@@ -1,0 +1,14 @@
+.sensor-status-wrapper{
+    display:flex;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.sensor-status-wrapper[active="true"]{
+    background-color: #7FFF00;
+}
+
+.sensor-status-wrapper[active="false"]{
+    background-color: #ff0000;
+}

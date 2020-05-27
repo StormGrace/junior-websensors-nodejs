@@ -1,22 +1,38 @@
 const electron = require('electron');
+
 const url = require('url');
 const path = require('path');
 
-const {app, BrowserWindow} = electron;
+const {app, BrowserWindow, ipcMain} = electron;
 
-let mainWindow;
+let appWindow;
 
-app.on('ready', function(){
+app.on('ready', () => {
     //Create new window.
-    mainWindow = new BrowserWindow({width: 280, height: 380, frame: false, fullscreenable: false});
+    appWindow = new BrowserWindow({title: "Sensor", width: 280, height: 380, frame: false, fullscreenable: false, transparent: true,  webPreferences: {
+        nodeIntegration: true,
+      }});
     //Load html file into Window.
-    mainWindow.setMenuBarVisibility(null);
-    mainWindow.setAlwaysOnTop = true;
-    
-    mainWindow.loadURL(url.format({
+   
+    appWindow.setAlwaysOnTop = true;
+
+    appWindow.loadURL(url.format({
         protocol: 'file:',
         slashes: true,
         pathname: path.join(__dirname, '/../index.html'),
     }));
+
+    appWindow.webContents.session.clearCache(function(){
+        //some callback.
+        })
+    appWindow.webContents.openDevTools({mode:'undocked'});
+
+    appWindow.on('close', () => {
+        app.quit();
+    })
+});
+
+ipcMain.on('command:close', () => {
+    app.quit();
 });
 

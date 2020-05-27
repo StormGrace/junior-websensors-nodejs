@@ -1,14 +1,14 @@
 {
   "name": "sensor",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Simple Sensor App, part of the realtime, sensor monitoring system.",
   "main": "./out/electron/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.electron.config.js && webpack --config webpack.config.js",
     "build:watch": "npm run build -- --watch"
   },
-  "author": "",
+  "author": "Aleksandar Gospodinov",
   "license": "ISC",
   "dependencies": {
     "electron": "^9.0.0",

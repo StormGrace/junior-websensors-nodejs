@@ -11,10 +11,10 @@ module.exports = {
   mode: 'development',
   // the entry point is the top of the tree of modules.
   // webpack will bundle this file and everything it references.
-  entry: './src/index.tsx',
+  entry: './src/app.tsx',
   // we specify we want to put the bundled result in the matching out/ folder
   output: {
-    filename: 'index.js',
+    filename: 'app.js',
     path: path.resolve(__dirname, 'out'),
   },
   module: {
