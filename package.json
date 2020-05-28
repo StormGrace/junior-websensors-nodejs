@@ -1,7 +1,7 @@
 {
   "name": "sensor",
   "version": "0.0.1",
-  "description": "Simple Sensor App, part of the realtime, sensor monitoring system.",
+  "description": "Simple Sensor App, part of a realtime, sensor monitoring system.",
   "main": "./out/electron/main.js",
   "scripts": {
     "start": "electron .",

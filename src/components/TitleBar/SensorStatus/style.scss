@@ -1,14 +1,22 @@
+$activeColor: #7FFF00;
+$inactiveColor: #ff0000;
+
+@mixin glow-effect($xOffset: 0px, $yOffset: 0px, $blurAmount: 18px, $spreadAmount: 2.5px, $color: white) {
+    box-shadow: $xOffset $yOffset $blurAmount $spreadAmount $color;
+}
+
 .sensor-status-wrapper{
-    display:flex;
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+    border-radius: 50px;
 }
 
 .sensor-status-wrapper[active="true"]{
-    background-color: #7FFF00;
+    background-color: $activeColor;
+    @include glow-effect($color: $activeColor);
 }
 
 .sensor-status-wrapper[active="false"]{
-    background-color: #ff0000;
+    background-color: $inactiveColor;
+    @include glow-effect($color: $inactiveColor);
 }

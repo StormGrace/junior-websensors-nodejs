@@ -9,11 +9,9 @@ let appWindow;
 
 app.on('ready', () => {
     //Create new window.
-    appWindow = new BrowserWindow({title: "Sensor", width: 280, height: 380, frame: false, fullscreenable: false, transparent: true,  webPreferences: {
-        nodeIntegration: true,
-      }});
+    appWindow = new BrowserWindow({title: "Sensor", width: 280, height: 300, frame: false, fullscreenable: false, transparent: true,  webPreferences: { nodeIntegration: true}});
+    
     //Load html file into Window.
-   
     appWindow.setAlwaysOnTop = true;
 
     appWindow.loadURL(url.format({

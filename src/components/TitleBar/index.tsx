@@ -19,7 +19,7 @@ class TitleBar extends Component<Props>{
     render(){
         return(
             <div className="titlebar">
-               <SensorStatus status={true}/>
+               <SensorStatus status={false}/>
                <div className="titlebar-title">{this.props.title}</div>
                <button className="titlebar-btn titlebar-btn-exit" onClick={this.handleClose}></button>
             </div>

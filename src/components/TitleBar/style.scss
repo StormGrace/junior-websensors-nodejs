@@ -1,10 +1,15 @@
+$titleBarColor: #2a2a2a;
+$titleBarColorFocus: green;
+
 .titlebar{
     display:flex;
     align-items: center;
     padding: 8px 6px 8px 14px;
     width:100%;
     height: 30px;
-    background-color: #2a2a2a;
+    background-color: $titleBarColor;
+    z-index: 100;
+    -webkit-user-select: none;
 
     &-title{
         display:flex;
@@ -14,8 +19,7 @@
         align-items: center;
         font-size: 1.25em;
         color: white;
-        -webkit-user-select: none;
-        -webkit-app-region: drag;       
+        -webkit-app-region: drag; 
     }
 
     &-btn{
@@ -31,18 +35,6 @@
         color: white;
         -webkit-user-select: none;
         -webkit-app-region: nodrag; 
-
-        &:hover{
-        
-        }
-
-        &:active {
-            border: 0;
-        }
-
-        &:focus{
-            outline: 0;
-        }
 
         &-exit{
             &:after{
