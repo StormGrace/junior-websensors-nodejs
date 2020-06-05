@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 
+import SensorController from './SensorController';
+
 import './style.scss';
 
-import OMeter from './OMeter';
-
 class Main extends Component{
+    constructor(props: any){
+        super(props);
+    }
+
     render(){
         return(
             <div className="main">
-                <OMeter segments={72} radius={100} value={24.22} measure='&#8451;'/>
+                <SensorController/>
             </div>
         );
     }

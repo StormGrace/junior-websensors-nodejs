@@ -4,9 +4,15 @@ import CSS from 'csstype';
 
 import './style.scss'
 
-interface Props {segments: number, radius: number, value: number, measure: string};
+interface Props {segments: number, radius: number, value: number, valuestep:number, measure: string};
 
 class OMeter extends Component<Props>{
+
+    state = {
+        ometerValue: 0,
+        ometerMeasure: ""
+    }
+
     container: React.RefObject<HTMLDivElement>;
     outerRing: React.RefObject<HTMLDivElement>;
     innerRing: React.RefObject<HTMLDivElement>;
@@ -21,11 +27,7 @@ class OMeter extends Component<Props>{
         borderTop: `${2}px solid gray`
     }
 
-    digitStyle: CSS.Properties = {
-        color: 'white',
-        fontSize: `${8}pt`,
-
-    }
+    digitStyle: CSS.Properties = { color: 'white', fontSize: `${8}pt`,}
 
     constructor(props:any){
         super(props);
@@ -38,10 +40,8 @@ class OMeter extends Component<Props>{
         return degs * Math.PI / 180;
     }
 
-    createDigitRing(segmentCount:number, radius:number){
+    createDigitRing(segmentCount:number, radius:number, valueStep:number){
         let digits = [];
-
-        let numStep = 10;
 
         let startAngle = 180;
 
@@ -51,7 +51,7 @@ class OMeter extends Component<Props>{
 
         let currentAngle = startAngle;
 
-        let currentNumStep = 0;
+        let currentValueStep = 0;
 
         for(let i = 0; i < 13; i++){        
             const radians: number = this.degToRad(currentAngle);          
@@ -62,10 +62,10 @@ class OMeter extends Component<Props>{
 
             digitStyle = {...digitStyle, ...this.digitStyle};
 
-            digits.push(<span key={i} className='ometer-digit' style={digitStyle}>{currentNumStep}</span>)
+            digits.push(<span key={i} className='ometer-digit' style={digitStyle}>{currentValueStep}</span>)
 
             currentAngle += angleSnap;
-            currentNumStep += numStep;
+            currentValueStep += valueStep;
         }
 
         return digits;
@@ -108,21 +108,34 @@ class OMeter extends Component<Props>{
         return ticks;
     }
 
+    setValue(value: number){
+        this.setState(
+            {
+                ometerValue: value
+            }
+        )
+    }
+
+    setMeasure(measure: string){
+        this.setState(
+            {
+                ometerMeasure: measure
+            }
+        )
+    }
+
     render(){
-        const segmentCount = this.props.segments;
-        const radius = this.props.radius;
-        const value = this.props.value;
-        const measure = this.props.measure;
+        const {segments, radius, value, valuestep, measure} = this.props
 
         const pointerStyle : CSS.Properties = {transform: `rotate(${value * 1.5}deg)`}
 
         return(
             <div className="ometer" ref={this.container}>
                 <div className="ometer-outer-ring" ref={this.outerRing}>
-                    {this.createOuterRing(segmentCount, radius, true)}
+                    {this.createOuterRing(segments, radius, true)}
                 </div>
                 <div className="ometer-digit-ring">
-                    {this.createDigitRing(segmentCount, radius - 24)}
+                    {this.createDigitRing(segments, radius - 24, valuestep)}
                 </div>
                 <div className="ometer-inner" ref={this.innerRing}>
                     <div className="ometer-inner-details">

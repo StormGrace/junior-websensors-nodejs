@@ -22,7 +22,7 @@ app.on('ready', () => {
 
     appWindow.webContents.session.clearCache(function(){
         //some callback.
-        })
+    })
     appWindow.webContents.openDevTools({mode:'undocked'});
 
     appWindow.on('close', () => {

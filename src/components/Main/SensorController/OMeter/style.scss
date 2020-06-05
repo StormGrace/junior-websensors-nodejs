@@ -9,7 +9,8 @@ $pointerWidth: 10px;
     align-items: center;
     position: relative;
     z-index: 1;
-    
+    border: 1px solid yellow;
+
     &-outer-ring{
         display:flex;
         position:absolute;

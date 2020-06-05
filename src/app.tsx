@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import './style.scss';
 
 import TitleBar from './components/TitleBar';
+
 import Main from './components/Main';
 
 const app = document.getElementById('app');
@@ -17,5 +18,4 @@ class App extends React.Component{
         );
     }
 }
-
 ReactDOM.render(<App/>, app);
