@@ -4,6 +4,7 @@ import SensorController from './SensorController';
 
 import './style.scss';
 
+
 class Main extends Component{
     constructor(props: any){
         super(props);

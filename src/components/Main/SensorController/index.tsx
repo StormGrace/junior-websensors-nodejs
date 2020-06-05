@@ -5,11 +5,12 @@ import Dropdown from '../../Dropdown';
 
 import './style.scss'
 
+const {ipcRenderer} = window.require('electron');
+
 class SensorController extends Component{
     state = {sensorValue: 0};
 
     refreshRate: number;
-
     interval: any;
 
     constructor(props:any){
@@ -17,7 +18,12 @@ class SensorController extends Component{
         
         this.refreshRate = 2000;
 
-        this.interval = setInterval(() => {this.setSensorValue(this.generateSensorValue(0, 120))}, this.refreshRate);      
+        this.interval = setInterval(() => {
+            this.setSensorValue(this.generateSensorValue(0, 120))
+
+            ipcRenderer.send("command:send");
+
+        }, this.refreshRate);      
     }
 
     componentWillUnmount(){
