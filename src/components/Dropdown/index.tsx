@@ -2,40 +2,49 @@ import React, {Component} from 'react';
 
 import './style.scss';
 
-interface Props {values: string[]}
+interface Props {values: string[], defaultValue: string, callback: Function}
 
 class Dropdown extends Component<Props>{
     state = {
-        selectedIndex: 0,
-        selectedItem: ""
+        defaultValue: ""
+    }
+
+    dropDownElement: React.RefObject<HTMLSelectElement>;
+
+    constructor(props:any){
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.dropDownElement = React.createRef<HTMLSelectElement>();
     }
 
     componentDidMount(){
-        this.selectItem(0);
+        this.selectValue(this.props.defaultValue);
     }
 
-    handleClick(itemIndex: number){
-        this.selectItem(itemIndex);
+    getSelectedValue(){
+        if(this.dropDownElement && this.dropDownElement.current){
+            return this.dropDownElement.current.value;
+        }
+        return null;
     }
 
-    selectItem(itemIndex: number){
-        this.setState(
-            {
-                selectedIndex: itemIndex,
-                selectedItem: this.props.values[itemIndex]
-            }
-        );
+    selectValue(value: string){
+        if(this.dropDownElement && this.dropDownElement.current){
+            this.dropDownElement.current.value = value;
+        }
     }
 
-    getSelectedItem(){
-        return this.state.selectedItem;
+    handleChange(event: any){
+        const selectedValue: string = event.target.value;
+        this.selectValue(selectedValue);
+        this.props.callback(selectedValue);
     }
 
     generateDropdownValues(values: string[]){
         const dropdownValues: string[] = [...values];
 
         const dropdownElements = dropdownValues.map((value:string, index: number) => (
-            <option key={index} className="dropdown-list-item" onClick={() => this.handleClick(index)}>{value}</option>
+            <option key={index} className="dropdown-list-item">{value}</option>
         ));
 
         return dropdownElements;
@@ -46,10 +55,12 @@ class Dropdown extends Component<Props>{
 
         return(
             <span className="dropdown">
-                <select className="dropdown-list">       
+                <select className="dropdown-list" onChange={(e) => {this.handleChange(e)}} ref={this.dropDownElement}>       
                     {this.generateDropdownValues(values)}
                 </select>
             </span>
         );
     }
-}export default Dropdown;
+}
+
+export default Dropdown;

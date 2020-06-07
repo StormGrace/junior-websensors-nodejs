@@ -4,23 +4,20 @@ import SensorStatus from './SensorStatus';
 
 const {ipcRenderer} = window.require('electron');
 
-interface Props { title: string }
+interface Props { title: string, status: boolean }
 
 class TitleBar extends Component<Props>{
-    constructor(props:any){
-        super(props);
-        //this.handleClose = this.handleClose.bind(this);
-    }
-
     handleClose(){
         ipcRenderer.send("command:close");
     }   
 
     render(){
+        const {title, status} = this.props;
+
         return(
             <div className="titlebar">
-               <SensorStatus status={false}/>
-               <div className="titlebar-title">{this.props.title}</div>
+               <SensorStatus status={status}/>
+               <div className="titlebar-title">{title}</div>
                <button className="titlebar-btn titlebar-btn-exit" onClick={this.handleClose}></button>
             </div>
         );

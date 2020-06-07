@@ -24,13 +24,20 @@ module.exports = {
       // .ts and .tsx files get passed to ts-loader
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader'
+        loader: 'ts-loader',
       },
       {
         test: /\.scss?$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader']
       },   
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+          use: [
+            'file-loader',
+          ],
+       },
     ],
+    
   },
   resolve: {
     // specify certain file extensions to get automatically appended to imports

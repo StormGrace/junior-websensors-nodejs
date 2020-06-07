@@ -1,6 +1,6 @@
 {
   "name": "sensor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple Sensor App, part of a realtime, sensor monitoring system.",
   "main": "./out/electron/main.js",
   "scripts": {
@@ -12,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "electron": "^9.0.0",
+    "randexp": "^0.5.3",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-environment-chart": "^0.1.7"
   },
   "devDependencies": {
     "@types/react": "^16.9.35",

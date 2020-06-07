@@ -1,11 +1,10 @@
-$titleBarColor: #2a2a2a;
-$titleBarColorFocus: green;
+$titleBarColor: #797879;
 
 .titlebar{
     display:flex;
     align-items: center;
+    justify-content: space-between;
     padding: 8px 6px 8px 14px;
-    width:100%;
     height: 30px;
     background-color: $titleBarColor;
     z-index: 100;
@@ -13,7 +12,7 @@ $titleBarColorFocus: green;
 
     &-title{
         display:flex;
-        width: 100%;
+        width: 80%;
         height: 100%;
         justify-content: center;
         align-items: center;
@@ -31,7 +30,7 @@ $titleBarColorFocus: green;
         padding:0;
         border: 0;
         font-size: 12pt;
-        background-color: #444444;
+        background-color: #616060;
         color: white;
         -webkit-user-select: none;
         -webkit-app-region: nodrag; 
